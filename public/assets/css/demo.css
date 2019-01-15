@@ -859,3 +859,30 @@
     background-color: #428bca;
     border-color: #357ebd;
 }
+.pagination {
+  display: flex;
+  @include list-unstyled();
+  @include border-radius();
+}
+
+
+.page-link:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+
+.page-link {
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #007bff;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+.pagination>li>a {
+    border-radius: 50% !important;
+    margin: 0 5px;
+}
+
+.pagination>li>a { border-radius: 50% !important;margin: 0 5px;}

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 14, 2019 at 01:08 PM
+-- Generation Time: Jan 15, 2019 at 01:57 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -35,8 +35,24 @@ CREATE TABLE `customer` (
   `phone` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `cus_id` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `type` int(11) NOT NULL DEFAULT '1'
+  `type` int(11) NOT NULL DEFAULT '1',
+  `created_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`id`, `fullname`, `address`, `phone`, `email`, `cus_id`, `type`, `created_at`) VALUES
+(1, 'nguyen van men', '357 cmt8 f12 quan 10', '81e8c414226304f', 'nguyen@gmail.com', NULL, 1, '2019-01-15 00:00:00'),
+(2, 'Hanh Nguyen', '', '09084872456', 'hanh@gmail.com', NULL, 1, '2019-01-15 00:00:00'),
+(3, 'fgdfgdf', 'dfgdfgdf', 'dfgdfgd', 'dfgdfgdf@gmail.com', NULL, 1, '2019-01-15 00:00:00'),
+(4, 'gfgfg\'\'\'\'\'\'', '\'\'\'\'', '\'\'\'\'', '', NULL, 1, '2019-01-15 00:00:00'),
+(5, 'Nguyen thi My dung', '', '595906945069', 'men@gmail.com', NULL, 1, '2019-01-15 00:00:00'),
+(6, 'Nguyen Van Teo', '3423423423 sfsdfsdfsd', '234234234234', 'teo@gmail.com', NULL, 1, '2019-01-15 00:00:00'),
+(7, 'yghfgh', 'gfhgfhgfhgf', 'fghgfhgf', '', NULL, 1, '2019-01-15 07:59:29'),
+(8, '', '', '', '', NULL, 1, '2019-01-15 08:35:52'),
+(9, 'Nguyen Teo', '357 cmt8 f12 quan 10', '090394303', 'hep@gmail.com', NULL, 1, '2019-01-15 12:37:07');
 
 -- --------------------------------------------------------
 
@@ -150,7 +166,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `invoice`

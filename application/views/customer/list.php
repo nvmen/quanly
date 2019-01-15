@@ -2,10 +2,13 @@
                             <div class="card strpied-tabled-with-hover">
                                 <div class="card-header ">
                                     <h4 class="card-title">Danh sách khách hàng</h4> 
+                                     <form  action="<?php echo $search_url?>" method ="POST">
                                     <div class="search">
-                                       <input type="text" class="form-control input-sm" maxlength="64" placeholder="Search" />
+                                       
+                                       <input type="text" name ="search_text" id ="search_text" class="form-control input-sm" maxlength="64" placeholder="Search" />
                                         <button type="submit" class="btn btn-search btn-info btn-fill pull-right">Search</button>
                                     </div> 
+                                     </form>
                                     <div class="search">   
                                     <a class=" pull-right btn btn-info btn-fill btn-wd"  href="<?php echo base_url();?>/customer/add">
                                         Thêm
@@ -74,6 +77,11 @@
                                             </tr>
                                         </tbody>
                                     </table>
+                                    <div class="col-md-12">
+                                             
+                                       </div>
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
