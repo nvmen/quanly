@@ -886,3 +886,6 @@
 }
 
 .pagination>li>a { border-radius: 50% !important;margin: 0 5px;}
+.pagination li.active a{
+    font-weight: bold;
+}

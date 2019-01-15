@@ -37,7 +37,7 @@
                                         <div class="row">
                                             <div class="col-md-12 ">
                                                 <div class="form-group">
-                                                    <label>Họ tên</label>
+                                                    <label>Họ tên(*)</label>
                                                     <input type="text" class="form-control" name ="fullname" id ="fullname" placeholder="Gemma Spa" value="">
                                                 </div>
                                             </div>

@@ -5,8 +5,8 @@
                                      <form  action="<?php echo $search_url?>" method ="POST">
                                     <div class="search">
                                        
-                                       <input type="text" name ="search_text" id ="search_text" class="form-control input-sm" maxlength="64" placeholder="Search" />
-                                        <button type="submit" class="btn btn-search btn-info btn-fill pull-right">Search</button>
+                                       <input type="text" name ="search_text" id ="search_text" class="form-control input-sm" maxlength="64" placeholder="Search" value="<?php echo  $search_text ?>" />
+                                        <button type="submit" name="submit" class="btn btn-search btn-info btn-fill pull-right">Search</button>
                                     </div> 
                                      </form>
                                     <div class="search">   
@@ -78,7 +78,8 @@
                                         </tbody>
                                     </table>
                                     <div class="col-md-12">
-                                             
+                                              <?php echo $pagination->create_links(); ?>
+
                                        </div>
                                     </div>
                                     
