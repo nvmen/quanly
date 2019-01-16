@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 16, 2019 at 03:11 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.0
+-- Generation Time: Jan 16, 2019 at 06:12 PM
+-- Server version: 10.1.33-MariaDB
+-- PHP Version: 7.2.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -45,22 +45,31 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`id`, `fullname`, `address`, `phone`, `email`, `cus_id`, `type`, `deleted`, `created_at`) VALUES
-(1, 'nguyen van men', '357 cmt8 f12 quan 10', '81e8c414226304f', 'nguyen@gmail.com', NULL, 1, 1, '2019-01-15 00:00:00'),
-(2, 'Hanh Nguyen', '', '09084872456', 'hanh@gmail.com', NULL, 1, 1, '2019-01-15 00:00:00'),
-(3, 'fgdfgdf', 'dfgdfgdf', 'dfgdfgd', 'dfgdfgdf@gmail.com', NULL, 1, 1, '2019-01-15 00:00:00'),
+(1, 'nguyen van men', '357 cmt8 f12 quan 10', '81e8c414226304f', 'nguyen@gmail.com', NULL, 1, 0, '2019-01-15 00:00:00'),
+(2, 'Hanh Nguyen', '', '09084872456', 'hanh@gmail.com', NULL, 1, 0, '2019-01-15 00:00:00'),
+(3, 'fgdfgdf', 'dfgdfgdf', 'dfgdfgd', 'dfgdfgdf@gmail.com', NULL, 1, 0, '2019-01-15 00:00:00'),
 (4, 'gfgfg\'\'\'\'\'\'', '\'\'\'\'', '\'\'\'\'', '', NULL, 1, 1, '2019-01-15 00:00:00'),
-(5, 'Nguyen thi My dung', '', '595906945069', 'men@gmail.com', NULL, 1, 1, '2019-01-15 00:00:00'),
+(5, 'Nguyen thi My dung', '', '595906945069', 'men@gmail.com', NULL, 1, 0, '2019-01-15 00:00:00'),
 (6, 'Nguyen Van Teo', '3423423423 sfsdfsdfsd', '234234234234', 'teo@gmail.com', NULL, 1, 1, '2019-01-15 00:00:00'),
 (7, 'yghfgh', 'gfhgfhgfhgf', 'fghgfhgf', '', NULL, 1, 0, '2019-01-15 07:59:29'),
-(8, '', '', '', '', NULL, 1, 1, '2019-01-15 08:35:52'),
-(9, 'Nguyen Teo', '357 cmt8 f12 quan 10', '090394303', 'hep@gmail.com', NULL, 1, 0, '2019-01-15 12:37:07'),
-(10, 'nguyen van men', 'Cach mang thang 8', '0908489245', 'men.nguyen.sg@gmail.com', NULL, 1, 0, '2019-01-16 07:49:21'),
-(11, 'Home ', 'asdasdas', 'dasasda', '', NULL, 1, 0, '2019-01-16 14:24:51'),
-(12, 'asdasdas', '23423423', 'q34234234', '', NULL, 1, 0, '2019-01-16 14:24:56'),
-(13, 'erfdsfdss', 'sdfdsfdsfsd', 'dsfdsf', '', NULL, 1, 0, '2019-01-16 14:25:00'),
-(14, 'Ngoc', 'Quan 19', '756756576756', '', NULL, 1, 0, '2019-01-16 14:42:45'),
-(15, 'Hanh', 'erterter', '405930595435', '', NULL, 1, 0, '2019-01-16 14:42:54'),
-(16, 'Chua Biet', '654654654', '53534534', '', NULL, 1, 0, '2019-01-16 14:43:01');
+(8, 'fdfdf', '', '', '', NULL, 1, 0, '2019-01-15 08:35:52'),
+(9, 'Nguyen Teo', '357 cmt8 f12 quan 10', '090394303', 'hep@gmail.com', NULL, 1, 1, '2019-01-15 12:37:07'),
+(10, 'gggg', '', '', '', NULL, 1, 0, '2019-01-15 15:33:53'),
+(11, 'xxxx', '', '', '', NULL, 1, 0, '2019-01-15 16:28:49'),
+(12, 'grtrtr', '', '', '', NULL, 1, 1, '2019-01-15 16:31:14'),
+(13, 'ererw', 'werewr', 'wrwer', '', NULL, 1, 0, '2019-01-16 16:58:35'),
+(14, 'werew3443', '3242342', '3423423', '', NULL, 1, 0, '2019-01-16 16:58:40'),
+(15, '234234', '3454rerter', '5435345', '', NULL, 1, 0, '2019-01-16 16:58:45'),
+(16, '34534534', '657657657', '3453467567', '', NULL, 1, 0, '2019-01-16 16:58:50'),
+(17, '67rtytry', 'fhfghf', 'tytryrtygfh', '', NULL, 1, 0, '2019-01-16 16:58:56'),
+(18, '\'', '', '', '', NULL, 1, 1, '2019-01-16 17:04:07'),
+(19, 'mmm', '', '', '', NULL, 1, 0, '2019-01-16 17:04:47'),
+(20, 'mmy', '', '', '', NULL, 1, 1, '2019-01-16 17:04:50'),
+(21, 'mmmc', '', '', '', NULL, 1, 0, '2019-01-16 17:04:54'),
+(22, 'mmme', '', '', '', NULL, 1, 0, '2019-01-16 17:04:58'),
+(23, 'mmvvdd', '', '', '', NULL, 1, 0, '2019-01-16 17:05:04'),
+(24, 'mutdrdf', '', '', '', NULL, 1, 1, '2019-01-16 17:05:08'),
+(25, 'sdsdm', '', '', '', NULL, 1, 0, '2019-01-16 17:05:13');
 
 -- --------------------------------------------------------
 
@@ -102,8 +111,17 @@ CREATE TABLE `service` (
   `name` int(11) NOT NULL,
   `price` decimal(10,0) DEFAULT NULL,
   `discount` decimal(10,0) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
+  `status` tinyint(1) NOT NULL,
+  `type` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'thuong'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `service`
+--
+
+INSERT INTO `service` (`id`, `name`, `price`, `discount`, `status`, `type`) VALUES
+(1, 0, NULL, NULL, 1, 'thuong'),
+(2, 0, NULL, NULL, 1, 'thuong');
 
 -- --------------------------------------------------------
 
@@ -174,7 +192,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `invoice`
@@ -186,7 +204,7 @@ ALTER TABLE `invoice`
 -- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user`

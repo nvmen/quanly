@@ -11,16 +11,11 @@ class Customer_model extends CI_model{
 
 	public function count_customers($search_string = null){
 
-		$this->db->select('*');
-		$this->db->from('customer');
-		if($search_string){
-			$this->db->or_like('fullname', $search_string);
-			$this->db->or_like('address', $search_string);
-			$this->db->or_like('phone', $search_string);
-			$this->db->or_like('email', $search_string);
-		}
- 		$this->db->where('deleted',0);
-		$query = $this->db->get();
+
+
+		$search_string = addslashes($search_string) ;
+		$sql ="select * from customer where deleted =0 and (fullname like '%$search_string%' or address like '%$search_string%' or phone like '%$search_string%' or email like '%$search_string%')";
+		$query = $this->db->query($sql); 
 		return $query->num_rows();   
 		
 
@@ -61,28 +56,11 @@ class Customer_model extends CI_model{
 	}
 	public function get_customers($search_string = null, $limit_start, $limit_end){
 
-		$this->db->select('customer.id');
-		$this->db->select('customer.fullname');
-		$this->db->select('customer.address');
-		$this->db->select('customer.phone');
-		$this->db->select('customer.email');
-		$this->db->select('customer.created_at');
-		$this->db->from('customer');
-	    $this->db->where('deleted',0);
-		if($search_string){			
-
-			$this->db->or_like('fullname', $search_string);
-			$this->db->or_like('address', $search_string);
-			$this->db->or_like('phone', $search_string);
-			$this->db->or_like('email', $search_string);
-		}
-		   
-		$this->db->order_by('created_at','DESC');
-		$this->db->limit($limit_start, $limit_end);
-		$this->db->where('deleted',0);
-		$query = $this->db->get();
-		
-		
+       $search_string = addslashes($search_string) ;
+		$sql ="select * from customer where deleted =0 and (fullname like '%$search_string%' or address like '%$search_string%' or phone like '%$search_string%' or email like '%$search_string%') 
+		     LIMIT $limit_end, $limit_start";
+				
+		$query = $this->db->query($sql); 
 		return $query->result_array(); 	
 	}
 }
