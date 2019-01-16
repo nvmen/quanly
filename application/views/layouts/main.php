@@ -12,8 +12,9 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
     <!-- CSS Files -->
-
     
+    <link data-require="sweet-alert@*" data-semver="0.4.2" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+
     <link href="<?php echo base_url();?>public/assets/css/bootstrap.min.css" rel="stylesheet" /> 
     <link href="<?php echo base_url();?>public/assets/css/light-bootstrap-dashboard.css?v=2.0.1" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
@@ -78,4 +79,5 @@
 <script src="<?php echo base_url();?>public/assets/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
 
 
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </html>

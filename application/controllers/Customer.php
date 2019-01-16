@@ -14,8 +14,7 @@ class Customer extends CI_Controller {
 		{		
 
 			//echo $this->input->post('submit'); exit(0);
-         $page = $this->uri->segment(3);
-       
+        
 			$search_text = "";			
 		   if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 		    
@@ -31,7 +30,7 @@ class Customer extends CI_Controller {
 		    
 			$config['base_url'] = base_url().'customer/index';
 
-			$config['total_rows'] = 50;
+			
 
 			$config['per_page'] = 10;
 
@@ -55,14 +54,90 @@ class Customer extends CI_Controller {
 			$config['last_tag_open'] = "<li>";
 			$config['last_tagl_close'] = "</li>";
 
-			$this->pagination->initialize($config);
+
+			
+
+			$page = $this->uri->segment(3);
+       	 	$limit_end = ($page * $config['per_page']) - $config['per_page'];
+        	if ($limit_end < 0){
+            	$limit_end = 0;
+        	} 
+
+        	$list_cust = $this->customer_model->get_customers( $search_text,$config['per_page'],$limit_end);
+			$list_cust_count = $this->customer_model->count_customers( $search_text);
+        	$config['total_rows'] = $list_cust_count;
+        	$this->pagination->initialize($config);
+
+        	//var_dump($list_cust_count);exit(0);
 			 				
 				  $this->load->view("layouts/main.php", [
 		            'main_view' => 'customer/list',
 		             'search_url'=> base_url().'customer',
 		             'pagination' =>  $this->pagination,
-		             'search_text' =>  $search_text
+		             'search_text' =>  $search_text,
+		             'customers'=> $list_cust
 		            ]);
+
+		}
+
+		public function update(){
+
+
+			if ($this->input->server('REQUEST_METHOD') == 'POST'){
+				//echo "update customer";
+
+				 $id = $this->input->post('id');
+				 $data = array(
+		    		  'fullname'=>$this->input->post('fullname'),
+		    		  'address'=>$this->input->post('address'),
+	   			      'phone'=>$this->input->post('phone'),
+		     		  'email'=>$this->input->post('email'),
+		             
+		        ); 
+				 if(!empty($data['fullname'])){
+				 		$status = $this->customer_model->update_customer($id,$data);	
+						if($status){
+								$this->session->unset_userdata('error_msg'); 
+								$this->session->set_flashdata('success_msg', 'Cập nhật khách hàng thành công.'); 
+						}else{
+							 $this->session->unset_userdata('success_msg');
+							 $this->session->set_flashdata('error_msg', 'Họ tên không được để trống.');
+						}
+				 }else{
+				 	 $this->session->unset_userdata('success_msg');
+				 	 $this->session->set_flashdata('error_msg', 'Họ tên không được để trống.');
+				 }
+		       // var_dump( $customer) ;exit(0);
+				
+			}
+
+			$id = $this->uri->segment(3);			
+			$customers = $this->customer_model->get_customer_id($id);
+			$customer_info = null;
+			if(count($customers) > 0) {
+				$customer_info = $customers[0];
+            }
+			$this->load->view("layouts/main.php", [
+	        				   'main_view' => 'customer/edit',
+	        				   'customer'=> $customer_info
+
+	            ]);
+
+		}
+
+		public function delete(){
+			$url_redirect = 'customer/index';
+			if ($this->input->server('REQUEST_METHOD') == 'POST'){
+				//echo "update customer";
+				 $id = $this->input->post('id');
+				 $url = $this->input->post('current_url');
+				 $url_redirect = $url;
+				$this->customer_model-> delete_customer($id);
+			}else{
+
+			}
+			redirect($url_redirect);
+
 
 		}
 		public function add()
