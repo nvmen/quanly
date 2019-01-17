@@ -146,7 +146,7 @@ class Customer extends CI_Controller {
 
 			$customers = array();
  			if ($_SERVER['REQUEST_METHOD'] === 'POST') {
- 				$search ="";
+ 				$search =$_POST['search'];
  				$customers = $this->customer_model->ajax_search($search);
 			}
 
@@ -154,6 +154,23 @@ class Customer extends CI_Controller {
 			 header('Content-Type: application/json');
     		 echo json_encode( $customers );
 		}
+		public function ajaxcust(){
+
+			$customer_info = null;
+ 			if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+ 			$id =$_POST['id'];
+ 			$customers = $this->customer_model->get_customer_id($id);
+			
+				if(count($customers) > 0) {
+					$customer_info = $customers[0];
+	            }
+			}
+
+			
+			 header('Content-Type: application/json');
+    		 echo json_encode( $customer_info );
+		}
+
 		public function add()
 		{
 			$this->session->set_flashdata('active_left_menu', 'customer');

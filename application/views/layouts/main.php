@@ -20,6 +20,8 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="<?php echo base_url();?>public/assets/css/demo.css" rel="stylesheet" />
     <script src="<?php echo base_url();?>public/assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/easy-autocomplete/1.3.5/easy-autocomplete.themes.min.css" />
+
 </head>
 
 <body>
@@ -66,7 +68,7 @@
 </body>
 <!--   Core JS Files   -->
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/easy-autocomplete/1.3.5/jquery.easy-autocomplete.min.js"></script>
 <script src="<?php echo base_url();?>public/assets/js/core/popper.min.js" type="text/javascript"></script>
  <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <!--<script src="<?php echo base_url();?>public/assets/js/core/bootstrap.min.js" type="text/javascript"></script> -->

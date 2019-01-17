@@ -889,3 +889,35 @@
 .pagination li.active a{
     font-weight: bold;
 }
+.easy-autocomplete-container {
+    position: relative;
+}
+#eac-container-search_text  ul{
+   display: none;
+    position: absolute;
+    background: #fff;
+    z-index: 9;
+    width: 100%;
+    border: 1px solid #ccc;
+    list-style: none;
+    border-radius: 10px;
+    left: 0;
+     padding: 5px 0;
+      margin: 2px 0;
+}
+
+#eac-container-search_text  ul li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+#eac-container-search_text li {
+    border-top: 1px solid #ddd;
+    padding: 10px 25px;
+
+}
+
+#eac-container-search_text li:first-child {
+    border-top: none;
+    padding-top: 10px;
+
+}

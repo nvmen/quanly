@@ -2,10 +2,15 @@
    <div class="card">
       <div class="card-header">
          <h4 class="card-title">Tìm khách hàng</h4>
-         <div class="col-md-12">               
-            <input type="text" name ="search_text" id ="search_text" class="form-control input-sm" maxlength="64" placeholder="Search" value="" />  
-            <div id="suggesstion-box"></div>          
-         </div>
+          <div class="row">
+               <div class="col-md-12 ">
+                  <div class="form-group">
+                    <input type="text" name ="search_text" id ="search_text" class="form-control input-sm" maxlength="64" placeholder="Search" value="" />
+
+                   
+                  </div>
+               </div>
+            </div>  
       </div>
       <div class="card-body">
       </div>
@@ -96,8 +101,61 @@
 
 <script type="text/javascript">
     
-    $(document).ready(function(){
-      
-    });
+     $(document).ready(function () {
+
+
+      var options = {
+
+           url: function(phrase) {
+             return "<?php echo base_url();?>customer/ajax";
+      },
+
+     getValue: function(element) {
+       return element.fullname;
+     },
+    template: {
+              type: "description",
+              fields: {
+                  description: "phone"
+              }
+          },
+
+     ajaxSettings: {
+          dataType: "json",
+          method: "POST",
+          data: {
+            dataType: "json"
+          }
+     },
+
+  preparePostData: function(data) {
+    data.search = $("#search_text").val();
+    return data;
+  },
+
+  list: {
+     onClickEvent: function() {
+         var id = $("#search_text").getSelectedItemData().id;
+         $.post( "<?php echo base_url();?>customer/ajaxcust", { id: id })
+           .done(function( data ) {
+               console.log(data);
+              $("#fullname").val(data.fullname);
+              $("#phone").val(data.phone);
+              $("#email").val(data.email);
+              $("#address").val(data.address);
+           });
+                 
+      }
+   },
+
+  requestDelay: 400
+};
+
+
+     
+$("#search_text").easyAutocomplete(options);
+
+
+     });
     
 </script>
