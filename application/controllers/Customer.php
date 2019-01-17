@@ -14,7 +14,7 @@ class Customer extends CI_Controller {
 		{		
 
 			//echo $this->input->post('submit'); exit(0);
-        
+        	$this->session->set_flashdata('active_left_menu', 'customer');
 			$search_text = "";			
 		   if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 		    
@@ -82,7 +82,7 @@ class Customer extends CI_Controller {
 
 		public function update(){
 
-
+			$this->session->set_flashdata('active_left_menu', 'customer');
 			if ($this->input->server('REQUEST_METHOD') == 'POST'){
 				//echo "update customer";
 
@@ -126,6 +126,7 @@ class Customer extends CI_Controller {
 		}
 
 		public function delete(){
+			$this->session->set_flashdata('active_left_menu', 'customer');
 			$url_redirect = 'customer/index';
 			if ($this->input->server('REQUEST_METHOD') == 'POST'){
 				//echo "update customer";
@@ -140,8 +141,22 @@ class Customer extends CI_Controller {
 
 
 		}
+
+		public function ajax(){
+
+			$customers = array();
+ 			if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+ 				$search ="";
+ 				$customers = $this->customer_model->ajax_search($search);
+			}
+
+			
+			 header('Content-Type: application/json');
+    		 echo json_encode( $customers );
+		}
 		public function add()
 		{
+			$this->session->set_flashdata('active_left_menu', 'customer');
 			if ($this->input->server('REQUEST_METHOD') == 'POST'){
 
 				 $customer = array(

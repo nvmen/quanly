@@ -16,10 +16,19 @@ class Customer_model extends CI_model{
 		$search_string = addslashes($search_string) ;
 		$sql ="select * from customer where deleted =0 and (fullname like '%$search_string%' or address like '%$search_string%' or phone like '%$search_string%' or email like '%$search_string%')";
 		$query = $this->db->query($sql); 
+
 		return $query->num_rows();   
 		
 
 		
+	}
+	public function ajax_search($search_string){
+	   $search_string = addslashes($search_string) ;
+		$sql ="select * from customer where deleted =0 and (fullname like '%$search_string%' or address like '%$search_string%' or phone like '%$search_string%' or email like '%$search_string%')";
+				
+		$query = $this->db->query($sql); 
+		return $query->result_array(); 	
+
 	}
 	public function delete_customer($id){
 		$this->db->where('id', $id);
