@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 17, 2019 at 04:02 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.0
+-- Generation Time: Jan 19, 2019 at 05:17 PM
+-- Server version: 10.1.33-MariaDB
+-- PHP Version: 7.2.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -71,10 +71,31 @@ INSERT INTO `customer` (`id`, `fullname`, `address`, `phone`, `email`, `cus_id`,
 CREATE TABLE `invoice` (
   `id` int(11) NOT NULL,
   `cus_id` int(11) DEFAULT NULL,
-  `create_date` date NOT NULL,
+  `create_date` datetime NOT NULL,
   `total` decimal(10,0) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL
+  `user_id` int(11) DEFAULT NULL,
+  `fullname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `invoice_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `invoice`
+--
+
+INSERT INTO `invoice` (`id`, `cus_id`, `create_date`, `total`, `user_id`, `fullname`, `phone`, `email`, `address`, `deleted`, `invoice_id`) VALUES
+(1, NULL, '2019-01-18 07:49:42', '550000', NULL, 'nguyen van men', '0908489245', 'men.nguyen.sg@gmail.com', '0', 0, NULL),
+(2, NULL, '2019-01-19 07:50:49', '550000', NULL, 'nguyen van men', '0908489245', 'men.nguyen.sg@gmail.com', 'Cach mang thang 8', 1, NULL),
+(3, NULL, '2019-01-19 07:57:13', '550000', NULL, 'nguyen van men', '0908489245', 'men.nguyen.sg@gmail.com', 'Cach mang thang 8', 0, NULL),
+(4, NULL, '2019-01-19 08:09:32', '550000', NULL, 'nguyen van men', '0908489245', 'men.nguyen.sg@gmail.com', 'Cach mang thang 8', 0, NULL),
+(5, NULL, '2019-01-19 08:13:19', '350000', NULL, 'nguyen van men', '0908489245', 'men.nguyen.sg@gmail.com', 'Cach mang thang 8', 0, NULL),
+(6, NULL, '2019-01-19 08:13:56', '550000', NULL, 'nguyen van men', '0908489245', 'men.nguyen.sg@gmail.com', 'Cach mang thang 8', 0, NULL),
+(7, NULL, '2019-01-19 08:15:17', '1700000', NULL, 'nguyen van men', '0908489245', 'men.nguyen.sg@gmail.com', 'Cach mang thang 8', 0, NULL),
+(8, NULL, '2019-01-19 13:21:47', '650000', NULL, 'Nguyen Thi teo', '09084895', 'men@gmailcom', '357/10 CMT8', 0, NULL),
+(9, NULL, '2019-01-19 16:06:25', '3900000', NULL, 'Nguyen Thi teo', '09084895', 'men@gmailcom', '357/10 CMT8', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -88,8 +109,25 @@ CREATE TABLE `invoice_details` (
   `price` decimal(10,0) NOT NULL,
   `qty` int(11) NOT NULL DEFAULT '1',
   `discount` decimal(10,0) DEFAULT '0',
-  `total` decimal(10,0) NOT NULL DEFAULT '0'
+  `total` decimal(10,0) NOT NULL DEFAULT '0',
+  `service` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `invoice_details`
+--
+
+INSERT INTO `invoice_details` (`invoice_id`, `service_id`, `price`, `qty`, `discount`, `total`, `service`) VALUES
+(6, 2, '250000', 1, '0', '250000', 'Tam trang toan than'),
+(6, 4, '300000', 1, '0', '300000', 'Massage toan tan'),
+(7, 4, '300000', 5, '0', '1500000', 'Massage toan tan'),
+(7, 5, '100000', 2, '0', '200000', 'tamsucuocsong.vn'),
+(8, 2, '250000', 1, '0', '250000', 'Tam trang toan than'),
+(8, 4, '300000', 1, '0', '300000', 'Massage toan tan'),
+(8, 5, '100000', 1, '0', '100000', 'tamsucuocsong.vn'),
+(9, 2, '250000', 10, '0', '2500000', 'Tam trang toan than'),
+(9, 4, '300000', 4, '0', '1200000', 'Massage toan tan'),
+(9, 5, '100000', 2, '0', '200000', 'tamsucuocsong.vn');
 
 -- --------------------------------------------------------
 
@@ -113,10 +151,11 @@ CREATE TABLE `service` (
 
 INSERT INTO `service` (`id`, `name`, `price`, `discount`, `status`, `type`, `deleted`) VALUES
 (1, '0', '120000', NULL, 1, 'thuong', 1),
-(2, 'Tam trang toan than', '25000000', NULL, 1, 'thuong', 0),
+(2, 'Tam trang toan than', '250000', NULL, 1, 'thuong', 0),
 (3, 'Giam gia 500k', '500000', NULL, 1, 'khuyenmai', 0),
-(4, 'Massage toan tan', '30000', NULL, 1, 'thuong', 0),
-(5, 'tamsucuocsong.vn', '0', NULL, 1, 'thuong', 0);
+(4, 'Massage toan tan', '300000', NULL, 1, 'thuong', 0),
+(5, 'tamsucuocsong.vn', '100000', NULL, 1, 'thuong', 0),
+(6, 'Khuyến mãi 200k', '200000', NULL, 1, 'khuyenmai', 0);
 
 -- --------------------------------------------------------
 
@@ -193,13 +232,13 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `invoice`
 --
 ALTER TABLE `invoice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user`

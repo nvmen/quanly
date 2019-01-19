@@ -7,7 +7,9 @@ class Service extends CI_Controller {
 		  	 		$this->load->model('user_model');
 		  	 		$this->load->model('service_model');		  	 		
 		            $this->load->library('session');
-
+		             if(!$this->session->userdata('is_logged_in')){
+         			    	redirect('user/index');
+     			   }
 	}
 	public function index() {
 		 	$this->session->set_flashdata('active_left_menu', 'service');

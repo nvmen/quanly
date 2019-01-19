@@ -13,11 +13,11 @@ public function __construct(){
 
 public function index()
 {
-$this->load->view("register.php");
+ $this->load->view("login_new.php");
 }
 
 public function register_user(){
-
+/*
       $user=array(
       'user_name'=>$this->input->post('user_name'),
       'user_email'=>$this->input->post('user_email'),
@@ -25,7 +25,7 @@ public function register_user(){
       'user_age'=>$this->input->post('user_age'),
       'user_mobile'=>$this->input->post('user_mobile')
         );
-        print_r($user);
+       // print_r($user);
 
 $email_check=$this->user_model->email_check($user['user_email']);
 
@@ -42,7 +42,7 @@ else{
 
 
 }
-
+*/
 }
 
 public function login_view(){
@@ -62,13 +62,11 @@ function login_user(){
     $data=$this->user_model->login_user($user_login['user_email'],$user_login['user_password']);
       if($data)
       {
-        $this->session->set_userdata('user_id',$data['user_id']);
-        $this->session->set_userdata('user_email',$data['user_email']);
-        $this->session->set_userdata('user_name',$data['user_name']);
-        $this->session->set_userdata('user_age',$data['user_age']);
-        $this->session->set_userdata('user_mobile',$data['user_mobile']);
+         $this->session->set_userdata('user_id',$data['user_id']); 
+         $this->session->set_userdata('is_logged_in',true);        
 
-        $this->load->view('user_profile.php');
+     
+          redirect('dashboard/index');
 
       }
       else{

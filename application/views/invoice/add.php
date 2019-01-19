@@ -89,14 +89,14 @@
       <div class="card-header">
          <h4 class="card-title">Dịch vụ</h4>
          <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
                  <label>Loại dịch vụ</label>
                  <select class="form-control" id="service">
                      <?php
                       foreach($services as $row)
                       {
                        
-                        echo '<option value ="'.$row['id'].'" >'.$row['name'].'</option>';
+                        echo '<option value ="'.$row['id'].'" >'.$row['name'].' ('.number_format($row['price'], 0, ',', ',').')</option>';
                        
                       }
                       ?>      
@@ -107,12 +107,16 @@
                 <div class="form-group">
                     <label>Số lượng</label>
                     <input type="text" name ="qty" id ="qty" class="form-control input-sm number"  style="width:100px" maxlength="64" placeholder="Số lượng" value="1" />
-                    <button type="button" id="add-service" name="add-service" style="margin-top: 20px" class="btn btn-search btn-info btn-fill pull-right" onclick="selected_service()">Thêm</button> 
+                   
+                    
                  </div>
-            </div>
-                          
+            </div>                         
+             <div class="col-md-2">
+                    <button type="button" id="add-service" name="add-service" style="margin-top: 25px" class="btn btn-info btn-fill pull-left" onclick="selected_service()">Thêm</button> 
             
+               </div>
          </div>
+
  
       </div>
       <div class="card-body">
@@ -129,9 +133,14 @@
                            
                         </tbody>
                     </table>
-                    <div class="col-md-12"> 
-                        <span>Tong cong</span>
+                    <div class="row hide" id ="show-total" > 
+                        <div class="col-md-12">
+                                <h4  class="card-title">Tổng tiền: <span id="show-money"> </span> đ</h4>
+                       </div>
                     </div>
+
+                    <button type="button" onclick="show_confim()" class="btn btn-info btn-fill pull-right">Lập hóa đơn</button>
+                                        <div class="clearfix"></div>
                  </div>
 
 
@@ -146,6 +155,92 @@ var services_selected = [];
 var total_money = 0;
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function show_confim() {
+   var fullname = $("#fullname").val();
+   if(fullname.trim().length ==0){
+      swal("Lỗi!", "Tên khách hàng không được bỏ trống", "warning");
+        return; 
+   }
+   
+   swal({
+        title: "Xác nhận hóa đơn",
+        text: "Bạn có chắc thông tin hóa đơn đã chính xác?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+            var list_post_service =[];
+             for(var i = 0; i<services_selected.length; i++){
+               var obj ={
+                  id: services_selected[i].id,
+                  qty: services_selected[i].qty,
+                  price: services_selected[i].service.price,
+                  name: services_selected[i].service.name,
+                  type: services_selected[i].service.type,
+                  total: Number(services_selected[i].service.price)*Number(services_selected[i].qty)
+
+               }
+               debugger;
+               list_post_service.push(obj);
+             }
+            var dataPost = {
+                  customer:{
+                     id:1,
+                     fullname:$("#fullname").val(),
+                     phone:$("#phone").val(),
+                     email:$("#email").val(),
+                     address: $("#address").val()
+                  },
+                  services: list_post_service,
+                  total: total_money
+               }
+            $.ajax({
+                 url: "<?php echo base_url();?>invoice/makeinvoice",
+                 type: "post",
+                 data: dataPost ,
+                 success: function (response) {
+                    // you will get response from your php page (what you echo or print)  
+                    console.log(response)               
+
+                 },
+                 error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus, errorThrown);
+                 }
+
+
+    });
+          swal("Poof! Your imaginary file has been deleted!", {
+            icon: "success",
+          });
+        } else {
+          swal("Your imaginary file is safe!");
+        }
+      });
+}
+function caculatorMoney(){
+
+   total_money = 0;
+    for(var i = 0; i<services_selected.length; i++){
+         if(services_selected[i].service.type == "khuyenmai"){
+            total_money = total_money - Number(services_selected[i].qty)*Number(services_selected[i].service.price);
+         }else{
+             total_money = total_money + Number(services_selected[i].qty)*Number(services_selected[i].service.price);
+         }
+        
+    }
+     if(total_money < 0)
+            total_money = 0;
+      
+      if(total_money >= 0 && services_selected.length > 0 ){
+         $('#show-total').show()
+      }else{
+         $('#show-total').hide();
+      }
+      $('#show-money').html(numberWithCommas(total_money));
 }
 
 function tableCreate() {
@@ -173,13 +268,14 @@ function tableCreate() {
 
 function show_delete(id){
   
-  debugger;
+
     for( var i = 0; i < services_selected.length; i++){ 
            if ( services_selected[i].id == id) {
                 services_selected.splice(i, 1); 
                 break;
            }
    }
+   caculatorMoney();
    tableCreate();
 }
 function selected_service(){
@@ -222,6 +318,7 @@ function selected_service(){
             total: obj.price*qty
         }
         services_selected.push(objAdd);
+        caculatorMoney();
         tableCreate();
 
     }
@@ -231,7 +328,7 @@ function selected_service(){
 }
 $(document).ready(function () {
 
-
+ $('#show-total').hide();
       var options = {
 
             url: function(phrase) {

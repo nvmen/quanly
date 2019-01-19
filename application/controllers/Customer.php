@@ -8,6 +8,9 @@ class Customer extends CI_Controller {
 		  	 		$this->load->model('customer_model');
 		  	 		$this->load->library('pagination');
 		            $this->load->library('session');
+		            if(!$this->session->userdata('is_logged_in')){
+         			    	redirect('user/index');
+     			   }
 
 		}
 		public function index()

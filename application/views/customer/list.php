@@ -11,7 +11,7 @@
             </div> 
              </form>
             <div class="search">   
-            <a class=" pull-right btn btn-info btn-fill btn-wd"  href="<?php echo base_url();?>/customer/add">
+            <a class=" pull-right btn btn-info btn-fill btn-wd"  href="<?php echo base_url();?>customer/add">
                 Thêm
             </a>   
             </div>                          
@@ -40,8 +40,8 @@
                       
                         echo '<td class="text-center">                                               
                         
-                            <a class="btn btn-info btn-xs" href="'.base_url("customer").'/update/'.$row['id'].'"><span class="glyphicon glyphicon-edit"></span> Edit</a> 
-                            <a href="javascript:void(0)" onclick = "show_delete('.$row['id'].')" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                            <a class="btn btn-info btn-xs" href="'.base_url("customer").'/update/'.$row['id'].'"><span class="glyphicon glyphicon-edit"></span> Sửa</a> 
+                            <a href="javascript:void(0)" onclick = "show_delete('.$row['id'].')" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Xóa</a></td>
 
                         </td>';
                         echo '</tr>';

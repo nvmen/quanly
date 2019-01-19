@@ -11,8 +11,8 @@
                     </a>
                 </div>
                 <ul class="nav">
-                    <li class="nav-item ">
-                        <a class="nav-link" href="dashboard.html">
+                    <li class="nav-item <?php if($active_left_menu=="dashboard") echo "active";?> ">
+                        <a class="nav-link" href="<?php echo base_url();?>dashboard">
                             <i class="nc-icon nc-chart-pie-35"></i>
                             <p>Dashboard</p>
                         </a>
