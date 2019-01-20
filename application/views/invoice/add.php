@@ -213,11 +213,14 @@ function show_confim() {
 
 
     });
-          swal("Poof! Your imaginary file has been deleted!", {
+          swal("Lập hóa đơn thành công.", {
             icon: "success",
           });
+          setInterval(function(){ 
+           window.location.href = "<?php echo base_url();?>invoice/index";
+          }, 3000);
         } else {
-          swal("Your imaginary file is safe!");
+        //  swal("Your imaginary file is safe!");
         }
       });
 }
